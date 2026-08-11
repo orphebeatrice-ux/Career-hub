@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cover Letters — Career Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#10265F;
+    --cobalt:#2458E6;
+    --paper:#F6F8FC;
+    --ink:#33415C;
+    --ink-soft:#6B7A9C;
+    --rule:#D7DEEC;
+    --ghost:#E7ECF7;
+    --white:#FFFFFF;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Instrument Sans', system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Outfit', system-ui, sans-serif;
+    color:var(--navy);
+    margin:0;
+  }
+  a{color:var(--cobalt);}
+  .accent{color:var(--cobalt);}
+
+  /* ---------- Nav ---------- */
+  nav.sitenav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,248,252,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-inner{
+    max-width:1120px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 32px;
+  }
+  .nav-brand{
+    font-family:'Outfit', sans-serif; font-weight:700; font-size:1.05rem;
+    color:var(--navy); letter-spacing:-0.01em; text-decoration:none;
+    display:flex; align-items:center; gap:8px;
+  }
+  .nav-brand .mark{
+    width:10px;height:10px;background:var(--cobalt); display:inline-block;
+    transform:rotate(45deg);
+  }
+  .nav-links{ display:flex; gap:4px; list-style:none; margin:0; padding:0; }
+  .nav-links a{
+    text-decoration:none; color:var(--ink-soft); font-weight:500; font-size:0.92rem;
+    padding:8px 14px; border-radius:8px; transition:all .15s ease;
+  }
+  .nav-links a:hover{ color:var(--navy); background:var(--ghost); }
+  .nav-links a.active{ color:var(--navy); background:var(--white); box-shadow:inset 0 0 0 1px var(--rule); }
+  @media (max-width:720px){
+    .nav-links{ display:none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    max-width:1120px; margin:0 auto; padding:72px 32px 48px;
+    position:relative;
+  }
+  .eyebrow{
+    font-family:'Outfit', sans-serif; font-size:0.72rem; font-weight:600;
+    letter-spacing:0.14em; text-transform:uppercase; color:var(--cobalt);
+    display:flex; align-items:center; gap:8px; margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:''; width:22px; height:1px; background:var(--cobalt);
+  }
+  h1.hero-headline{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    font-weight:700; letter-spacing:-0.02em; line-height:1.05;
+    max-width:14ch;
+  }
+  h1.hero-headline em{
+    font-style:italic; font-weight:600; color:var(--cobalt);
+  }
+
+  /* corner tick — blueprint signature */
+  .tick{
+    position:absolute; width:16px; height:16px; pointer-events:none;
+  }
+  .tick::before,.tick::after{ content:''; position:absolute; background:var(--rule); }
+  .tick::before{ width:100%; height:1px; top:0; left:0; }
+  .tick::after{ width:1px; height:100%; top:0; left:0; }
+  .tick.tl{ top:0; left:0; }
+  .tick.tr{ top:0; right:0; transform:scaleX(-1); }
+  .tick.bl{ bottom:0; left:0; transform:scaleY(-1); }
+  .tick.br{ bottom:0; right:0; transform:scale(-1,-1); }
+
+  section{ max-width:1120px; margin:0 auto; padding:0 32px 96px; }
+  .section-head{ display:flex; align-items:baseline; gap:16px; margin-bottom:32px; }
+  .section-head h2{ font-size:1.5rem; font-weight:700; letter-spacing:-0.01em; }
+  .section-head .rule{ flex:1; height:1px; background:var(--rule); }
+
+  /* ---------- Story cards ---------- */
+  .story-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
+    gap:20px;
+  }
+  .story-card{
+    position:relative; background:var(--white);
+    border:1px solid var(--rule); border-radius:var(--radius);
+    padding:28px 24px 24px; overflow:hidden;
+    transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  }
+  .story-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 34px -18px rgba(16,38,95,0.28);
+    border-color:#C3CEEA;
+  }
+  .story-num{
+    position:absolute; top:-6px; right:8px;
+    font-family:'Outfit', sans-serif; font-weight:800; font-size:5.2rem;
+    color:var(--ghost); line-height:1; user-select:none; z-index:0;
+  }
+  .story-card h3{
+    position:relative; z-index:1;
+    font-size:1.08rem; font-weight:600; margin-bottom:10px; padding-right:40px;
+  }
+  .story-card p{
+    position:relative; z-index:1;
+    font-size:0.94rem; line-height:1.58; color:var(--ink); margin:0;
+  }
+  .story-card .flag{
+    position:relative; z-index:1; display:inline-block; margin-top:12px;
+    font-size:0.76rem; font-weight:600; color:var(--cobalt);
+    background:#EDF2FE; border:1px solid #D3E0FB; padding:4px 9px; border-radius:6px;
+  }
+
+  /* ---------- Tool ---------- */
+  .tool-panel{
+    background:var(--white); border:1px solid var(--rule); border-radius:var(--radius);
+    padding:32px; position:relative;
+  }
+  .field-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+  @media (max-width:640px){ .field-row{ grid-template-columns:1fr; } }
+  label{
+    display:block; font-size:0.8rem; font-weight:600; color:var(--navy);
+    margin-bottom:6px; letter-spacing:0.01em;
+  }
+  input[type=text], textarea{
+    width:100%; font-family:'Instrument Sans', sans-serif; font-size:0.94rem;
+    border:1px solid var(--rule); border-radius:10px; padding:12px 14px;
+    background:var(--paper); color:var(--ink); resize:vertical;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  input[type=text]:focus, textarea:focus{
+    outline:none; border-color:var(--cobalt);
+    box-shadow:0 0 0 3px rgba(36,88,230,0.14);
+  }
+  textarea#jobDesc{ min-height:150px; }
+  textarea#letterResult{ min-height:260px; margin-top:10px; }
+
+  .btn-row{ display:flex; flex-wrap:wrap; gap:12px; margin:20px 0 6px; }
+  button{
+    font-family:'Instrument Sans', sans-serif; font-weight:600; font-size:0.9rem;
+    border-radius:10px; padding:12px 20px; cursor:pointer;
+    border:1px solid transparent; transition:transform .12s ease, box-shadow .12s ease, opacity .15s ease;
+  }
+  button:active{ transform:translateY(1px); }
+  .btn-primary{ background:var(--navy); color:var(--white); }
+  .btn-primary:hover{ box-shadow:0 8px 18px -8px rgba(16,38,95,0.5); }
+  .btn-ai{ background:var(--cobalt); color:var(--white); }
+  .btn-ai:hover{ box-shadow:0 8px 18px -8px rgba(36,88,230,0.55); }
+  .btn-ai[disabled]{
+    background:#C7D3EE; color:#8092BC; cursor:not-allowed; box-shadow:none;
+  }
+  .btn-ghost{
+    background:transparent; color:var(--navy); border-color:var(--rule);
+  }
+  .btn-ghost:hover{ background:var(--ghost); }
+  .btn-sm{ padding:8px 14px; font-size:0.82rem; }
+
+  .hint{
+    font-size:0.84rem; color:var(--ink-soft); line-height:1.5; margin-top:14px;
+    padding:12px 14px; background:var(--paper); border-left:2px solid var(--cobalt);
+    border-radius:4px;
+  }
+  .hint strong{ color:var(--navy); }
+
+  .ai-note{
+    font-size:0.78rem; color:var(--ink-soft); margin-top:6px;
+  }
+
+  .result-head{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top:36px; margin-bottom:10px; flex-wrap:wrap; gap:10px;
+  }
+  .result-head h3{ font-size:1rem; font-weight:700; color:var(--navy); }
+  .result-actions{ display:flex; gap:10px; }
+
+  .edit-note{
+    display:flex; gap:10px; align-items:flex-start;
+    margin-top:16px; font-size:0.85rem; color:var(--ink); line-height:1.55;
+    background:#FFF7ED; border:1px solid #FBE3C4; padding:12px 14px; border-radius:10px;
+  }
+  .edit-note .dot{
+    flex-shrink:0; width:6px; height:6px; border-radius:50%; background:#D97706; margin-top:7px;
+  }
+
+  .toast{
+    position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--navy); color:var(--white); padding:11px 20px; border-radius:10px;
+    font-size:0.86rem; font-weight:500; opacity:0; pointer-events:none;
+    transition:opacity .2s ease, transform .2s ease; z-index:100;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<nav class="sitenav">
+  <div class="nav-inner">
+    <a href="./index.html" class="nav-brand"><span class="mark"></span>Career Hub</a>
+    <ul class="nav-links">
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./resume.html">Resume</a></li>
+      <li><a href="./coverletter.html" class="active">Cover Letters</a></li>
+      <li><a href="./style.html">Style Guide</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="hero">
+  <span class="tick tl"></span><span class="tick tr"></span>
+  <p class="eyebrow">Cover Letters</p>
+  <h1 class="hero-headline">Letters that sound <em>like</em> me</h1>
+</div>
+
+<!-- ================= SECTION 1: STORY POINTS ================= -->
+<section id="story-points">
+  <div class="section-head">
+    <h2>My story points</h2>
+    <div class="rule"></div>
+  </div>
+
+  <div class="story-grid">
+
+    <div class="story-card">
+      <span class="story-num">01</span>
+      <h3>Staying calm when it counts</h3>
+      <p>At Atria Senior Living <span class="accent">(2023–2024)</span>, care isn't just routine — it's being ready when routine breaks. I transferred residents safely between bed and wheelchair, handled personal care and medication reminders daily, and when an emergency came up, I acted. That instinct — stay calm, follow safety protocol, take care of the person in front of you — is the same instinct I'd bring into a classroom.</p>
+    </div>
+
+    <div class="story-card">
+      <span class="story-num">02</span>
+      <h3>Six years, four employers, one throughline</h3>
+      <p>From <span class="accent">2018 to 2025</span>, across <span class="accent">four different</span> care roles — Premier Health System, BAYADA Home Care, Atria Senior Living, and Home Instead — medication reminders were a constant on my plate. Every employer trusted me with the same responsibility: making sure people got what they needed, on time, without fail. That's not a coincidence — it's a pattern I built on purpose.</p>
+    </div>
+
+    <div class="story-card">
+      <span class="story-num">03</span>
+      <h3>Learning fast, on purpose</h3>
+      <p>While working full-time in caregiving, I completed a <span class="accent">4-month</span> accelerated Pharmacy Technician program and, separately, an <span class="accent">8-week</span> Medical Office Training program — both remote, both while still showing up for clients. I didn't slow down to build new skills; I built them alongside the work. That's the same energy I bring to picking up a new classroom, a new student's needs, a new routine.</p>
+    </div>
+
+    <div class="story-card">
+      <span class="story-num">04</span>
+      <h3>A language beyond English</h3>
+      <p>I bring <span class="accent">[French / Haitian Creole — confirm which]</span> into my work — a real asset for connecting with students and families from different backgrounds.</p>
+      <span class="flag">⚑ confirm before sending</span>
+    </div>
+
+    <div class="story-card">
+      <span class="story-num">05</span>
+      <h3>Starting over, on purpose</h3>
+      <p>My path started in Haiti, where I earned my GED at <span class="accent">Collège Ruben Leconte</span>, Port-au-Prince. Rebuilding a life, a career, and a set of credentials in a new country takes the same resilience and adaptability I bring to every new client, every new role, every new challenge. Starting over isn't something I fear — it's something I've already proven I can do well.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= SECTION 2: NEW COVER LETTER TOOL ================= -->
+<section id="new-letter">
+  <div class="section-head">
+    <h2>New cover letter</h2>
+    <div class="rule"></div>
+  </div>
+
+  <div class="tool-panel">
+    <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+
+    <div class="field-row">
+      <div>
+        <label for="companyName">Company name</label>
+        <input type="text" id="companyName" placeholder="e.g. Boston Public Schools">
+      </div>
+      <div>
+        <label for="targetRole">Role (optional)</label>
+        <input type="text" id="targetRole" placeholder="e.g. Paraprofessional, Grade 3">
+      </div>
+    </div>
+
+    <label for="jobDesc">Job description</label>
+    <textarea id="jobDesc" placeholder="Paste the full job posting here…"></textarea>
+
+    <div class="btn-row">
+      <button class="btn-primary" id="copyPromptBtn">Copy prompt to paste elsewhere</button>
+      <button class="btn-ai" id="autoDraftBtn" disabled>✨ Auto-draft with AI</button>
+    </div>
+    <p class="ai-note" id="aiStatusNote">Auto-draft unlocks once your key is saved on the Resume page.</p>
+
+    <p class="hint">💡 <strong>Skip the tool entirely:</strong> paste the job description straight into our chat and say "draft my cover letter" — I already have your story bank, so I can write it directly, no prompt-copying required.</p>
+
+    <div class="result-head">
+      <h3>Your letter</h3>
+      <div class="result-actions">
+        <button class="btn-ghost btn-sm" id="copyLetterBtn">Copy letter</button>
+        <a class="btn-ghost btn-sm" id="gdocsLink" href="https://docs.new" target="_blank" rel="noopener" style="text-decoration:none; display:inline-flex; align-items:center;">Open in Google Docs ↗</a>
+      </div>
+    </div>
+    <textarea id="letterResult" placeholder="Your finished letter lands here — auto-drafted by AI, or pasted in after you run the copied prompt somewhere else."></textarea>
+
+    <div class="edit-note">
+      <span class="dot"></span>
+      <span>Before sending: rewrite at least <strong>five sentences</strong> into your own words. It should sound confident and specific — like you — never like "I am writing to express my interest…" or any other opener you've read a hundred times.</span>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const STORY_BANK = `MY STORY BANK — Beatrice Orphe
+
+TARGET ROLE: Paraprofessional (school-based support)
+
+WORK STYLE: Steady under pressure, dependable across a wide range of care settings, comfortable moving fast when I need to, and collaborative — I frame my own training around working with a team and understanding diverse student needs.
+
+STORY 1 — Staying calm when it counts
+At Atria Senior Living, care isn't just routine — it's being ready when routine breaks. I transferred residents safely between bed and wheelchair, handled personal care and medication reminders daily, and when an emergency came up, I acted. That instinct — stay calm, follow safety protocol, take care of the person in front of you — is the same instinct I'd bring into a classroom.
+
+STORY 2 — Six years of consistency, four employers, one throughline
+From 2018 to 2025, across four different care roles — Premier Health System, BAYADA Home Care, Atria Senior Living, and Home Instead — medication reminders were a constant on my plate. Every employer trusted me with the same responsibility: making sure people got what they needed, on time, without fail. That's not a coincidence — it's a pattern I built on purpose.
+
+STORY 3 — Learning fast, on purpose
+While working full-time in caregiving, I completed a 4-month accelerated Pharmacy Technician program and, separately, an 8-week Medical Office Training program — both remote, both while still showing up for clients. I didn't slow down to build new skills; I built them alongside the work. That's the same energy I bring to picking up a new classroom, a new student's needs, a new routine.
+
+BONUS — A language beyond English (confirm which language before use: French or Haitian Creole)
+I bring a language beyond English into my work — a real asset for connecting with students and families from different backgrounds.
+
+BONUS — Starting over, on purpose
+My path started in Haiti, where I earned my GED at Collège Ruben Leconte, Port-au-Prince. Rebuilding a life, a career, and a set of credentials in a new country takes the same resilience and adaptability I bring to every new client, every new role, every new challenge. Starting over isn't something I fear — it's something I've already proven I can do well.`;
+
+  function buildPrompt(){
+    const company = document.getElementById('companyName').value.trim() || '[company name]';
+    const role = document.getElementById('targetRole').value.trim();
+    const jd = document.getElementById('jobDesc').value.trim() || '[paste job description]';
+
+    return `Write a cover letter for me using my real story bank below — do not invent facts, achievements, or numbers that aren't in it.
+
+COMPANY: ${company}${role ? `\nROLE: ${role}` : ''}
+
+JOB DESCRIPTION:
+${jd}
+
+${STORY_BANK}
+
+INSTRUCTIONS:
+- Pick 2–3 stories from my bank that best match this job description and lead with those.
+- Sound confident and specific — like a real person, not a template.
+- Never open with "I am writing to express my interest" or any other cliché opener.
+- Keep it to one page, four short paragraphs max.
+- If the language story is used, leave the language as a clearly marked placeholder for me to fill in — don't guess.`;
+  }
+
+  function showToast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(window.__toastTimer);
+    window.__toastTimer = setTimeout(()=> t.classList.remove('show'), 2200);
+  }
+
+  async function copyText(text, successMsg){
+    try{
+      await navigator.clipboard.writeText(text);
+      showToast(successMsg);
+    }catch(e){
+      const ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+      showToast(successMsg);
+    }
+  }
+
+  document.getElementById('copyPromptBtn').addEventListener('click', ()=>{
+    copyText(buildPrompt(), 'Prompt copied — paste it anywhere.');
+  });
+
+  document.getElementById('copyLetterBtn').addEventListener('click', ()=>{
+    const val = document.getElementById('letterResult').value.trim();
+    if(!val){ showToast('Nothing to copy yet.'); return; }
+    copyText(val, 'Letter copied.');
+  });
+
+  // ---- Auto-draft with AI: separate, always-explicit action ----
+  async function checkAiReady(){
+    const btn = document.getElementById('autoDraftBtn');
+    const note = document.getElementById('aiStatusNote');
+    try{
+      const res = await window.storage.get('settings:apiKeySaved');
+      if(res && res.value){
+        btn.disabled = false;
+        note.textContent = 'Auto-draft will call the free model directly using your saved key.';
+      }
+    }catch(e){
+      // key not saved yet — button stays disabled with default note
+    }
+  }
+  checkAiReady();
+
+  document.getElementById('autoDraftBtn').addEventListener('click', async ()=>{
+    const btn = document.getElementById('autoDraftBtn');
+    const resultBox = document.getElementById('letterResult');
+    const jd = document.getElementById('jobDesc').value.trim();
+    if(!jd){ showToast('Paste a job description first.'); return; }
+
+    btn.disabled = true;
+    const originalLabel = btn.textContent;
+    btn.textContent = 'Drafting…';
+
+    try{
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-6',
+          max_tokens: 1000,
+          messages: [{ role: 'user', content: buildPrompt() }]
+        })
+      });
+      const data = await response.json();
+      const text = (data.content || [])
+        .map(block => block.type === 'text' ? block.text : '')
+        .filter(Boolean)
+        .join('\n');
+      resultBox.value = text || 'No draft returned — try again.';
+      showToast('Draft ready — now make it sound like you.');
+    }catch(err){
+      showToast('Auto-draft failed — use "Copy prompt" instead.');
+    }finally{
+      btn.disabled = false;
+      btn.textContent = originalLabel;
+    }
+  });
+</script>
+
+</body>
+</html>
